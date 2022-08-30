@@ -34,7 +34,7 @@ function Banner() {
               fontFamily: "Arial",
             }}
           >
-            Crypto Hunter
+            Crypto Graphics
           </Typography>
           <Typography
             variant="subtitle2"

@@ -3,26 +3,29 @@ import { CryptoState } from "../CryptoContext";
 import axios from "axios";
 import { HistoricalChart } from "../config/api";
 import { createTheme, ThemeProvider, CircularProgress } from "@mui/material";
+import { chartDays } from "../config/data";
+import SelectButton from "./SelectButton";
 import { Line } from "react-chartjs-2";
-import { Chart } from "react-chartjs-2";
-import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   Title,
+  Tooltip,
   LineElement,
   Legend,
   CategoryScale,
   LinearScale,
   PointElement,
+  Filler,
 } from "chart.js";
 ChartJS.register(
   Title,
-
+  Tooltip,
   LineElement,
   Legend,
   CategoryScale,
   LinearScale,
-  PointElement
+  PointElement,
+  Filler
 );
 
 const CoinInfo = ({ coin }) => {
@@ -110,7 +113,27 @@ const CoinInfo = ({ coin }) => {
                 },
               }}
             />
-            <div>{chartDays}</div>
+            <div
+              style={{
+                display: "flex",
+                marginTop: 20,
+                justifyContent: "space-around",
+                width: "100%",
+              }}
+            >
+              {chartDays.map((day) => (
+                <SelectButton
+                  key={day.value}
+                  onClick={() => {
+                    setDays(day.value);
+                    setflag(false);
+                  }}
+                  selected={day.value === days}
+                >
+                  {day.label}
+                </SelectButton>
+              ))}
+            </div>
           </>
         )}
       </div>

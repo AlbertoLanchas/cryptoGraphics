@@ -8,6 +8,7 @@ import {
   TableContainer,
   Typography,
   TextField,
+  Pagination,
   LinearProgress,
 } from "@mui/material";
 
@@ -165,6 +166,20 @@ const CoinsTable = () => {
             </Table>
           )}
         </TableContainer>
+        <Pagination
+          count={(handleSearch()?.length / 10).toFixed(0)}
+          style={{
+            padding: 20,
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            color: "gold",
+          }}
+          onChange={(_, value) => {
+            setPage(value);
+            window.scroll(0, 450);
+          }}
+        />
       </Container>
     </ThemeProvider>
   );

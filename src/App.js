@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CoinPage from "./Pages/CoinPage";
 import Homepage from "./Pages/HomePage";
 import Header from "./components/Header";
+import Alert from "./components/Alert";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/coins/:id" element={<CoinPage />} exact />
         </Routes>
       </div>
+      {/* <Alert /> */}
     </BrowserRouter>
   );
 };

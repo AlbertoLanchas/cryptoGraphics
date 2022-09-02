@@ -30,19 +30,10 @@ const darkTheme = createTheme({
 });
 
 const CoinsTable = () => {
-  const [coins, setCoins] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState([]);
   const [page, setPage] = useState(1);
 
-  const { currency, symbol } = CryptoState();
-
-  const fetchCoins = async () => {
-    setLoading(true);
-    const { data } = await axios.get(CoinList(currency));
-    setCoins(data);
-    setLoading(false);
-  };
+  const { currency, symbol, coins, loading, fetchCoins } = CryptoState();
 
   useEffect(() => {
     fetchCoins();
@@ -65,7 +56,7 @@ const CoinsTable = () => {
         <TextField
           label="Search For a Crypto Currency.."
           variant="outlined"
-          style={{ marginBottom: 20, width: "100%", color: "white" }}
+          style={{ marginBottom: 20, width: "100%" }}
           onChange={(e) => setSearch(e.target.value)}
         />
         <TableContainer>

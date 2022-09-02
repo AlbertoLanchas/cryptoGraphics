@@ -10,6 +10,7 @@ import {
   createTheme,
 } from "@mui/material";
 import { CryptoState } from "../CryptoContext";
+import AuthModal from "./Authentication/AuthModal";
 
 const darkTheme = createTheme({
   palette: {
@@ -56,6 +57,7 @@ const Header = () => {
                 <MenuItem value={"USD"}>USD</MenuItem>
                 <MenuItem value={"EUR"}>EUR</MenuItem>
               </Select>
+              <AuthModal />
             </Toolbar>
           </Container>
         </AppBar>

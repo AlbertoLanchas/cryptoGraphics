@@ -214,7 +214,7 @@ const CoinPage = () => {
                   .toString()
                   .slice(0, -6)
               )}
-              M
+              {" B"}
             </Typography>
           </span>
           {user && (

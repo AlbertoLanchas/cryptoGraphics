@@ -10,6 +10,7 @@ import { numberWithCommas } from "../components/CoinsTable";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { Button } from "@mui/material";
+import "./CoinPage.css";
 
 const CoinPage = () => {
   const { id } = useParams();
@@ -76,73 +77,22 @@ const CoinPage = () => {
   if (!coin) return <LinearProgress style={{ backgroundColor: "#F33F3F" }} />;
 
   return (
-    <div
-      style={{
-        display: "flex",
-        // flexDirection: "column",
-        // alignItems: "center",
-      }}
-    >
-      <div
-        style={{
-          width: "30%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          marginTop: 25,
-          borderRight: "2px solid grey",
-          padding: 30,
-        }}
-      >
+    <div className="container">
+      <div className="sidebar">
         <img
           src={coin?.image.large}
           alt={coin?.name}
           height="200"
           style={{ marginBottom: 20 }}
         />
-        <Typography
-          variant="h3"
-          style={{
-            fontWeight: "bold",
-            marginBottom: 20,
-            fontFamily: "Montserrat",
-          }}
-        >
+        <Typography variant="h3" className="heading">
           {coin?.name}
         </Typography>
-        <Typography
-          variant="subtitle1"
-          style={{
-            width: "100%",
-            fontFamily: "Arial",
-            // padding: 25,
-            paddingBottom: 15,
-            paddingTop: 0,
-            textAlign: "justify",
-          }}
-        >
+        <Typography variant="subtitle1" className="description">
           {parse(`${coin?.description.en.split(". ")[0]}`)}.
         </Typography>
 
-        <div
-          type={{
-            alignSelf: "start",
-            padding: 25,
-            paddingTop: 10,
-            width: "100%",
-            // [theme.breakpoints.down("md")]: {
-            //   display: "flex",
-            //   justifyContent: "space-around",
-            // },
-            // [theme.breakpoints.down("sm")]: {
-            //   flexDirection: "column",
-            //   alignItems: "center",
-            // },
-            // [theme.breakpoints.down("xs")]: {
-            //   alignItems: "start",
-            // },
-          }}
-        >
+        <div className="marketData">
           <span style={{ display: "flex" }}>
             <Typography
               variant="h5"

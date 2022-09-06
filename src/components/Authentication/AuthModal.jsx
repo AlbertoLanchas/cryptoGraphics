@@ -5,9 +5,12 @@ import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import { CryptoState } from "../../CryptoContext";
+import { auth } from "../../firebase";
+import GoogleButton from "react-google-button";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const style = {
   position: "absolute",
@@ -23,6 +26,7 @@ const style = {
 
 export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
+  const { setAlert } = CryptoState();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [value, setValue] = useState(0);
@@ -30,8 +34,29 @@ export default function BasicModal() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  console.log(value);
 
+  const googleProvider = new GoogleAuthProvider();
+
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((res) => {
+        setAlert({
+          open: true,
+          message: `Sign Up Successful. Welcome ${res.user.email}`,
+          type: "success",
+        });
+
+        handleClose();
+      })
+      .catch((error) => {
+        setAlert({
+          open: true,
+          message: error.message,
+          type: "error",
+        });
+        return;
+      });
+  };
   return (
     <div>
       <Button
@@ -40,7 +65,7 @@ export default function BasicModal() {
           width: 85,
           height: 40,
           marginLeft: 15,
-          backgroundColor: "violet",
+          backgroundColor: "#000",
         }}
       >
         LOGIN
@@ -79,6 +104,23 @@ export default function BasicModal() {
           </AppBar>
           {value === 0 && <Login handleClose={handleClose} />}
           {value === 1 && <SignUp handleClose={handleClose} />}
+          <Box
+            style={{
+              padding: 24,
+              paddingTop: 0,
+              display: "flex",
+              flexDirection: "column",
+              textAlign: "center",
+              gap: 20,
+              fontSize: 20,
+            }}
+          >
+            <span>OR</span>
+            <GoogleButton
+              style={{ width: "100%", outline: "none" }}
+              onClick={signInWithGoogle}
+            />
+          </Box>
         </Box>
       </Modal>
     </div>

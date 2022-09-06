@@ -34,7 +34,7 @@ function Banner() {
               fontFamily: "Arial",
             }}
           >
-            Crypto Graphics
+            Crypto Charts
           </Typography>
           <Typography
             variant="subtitle2"

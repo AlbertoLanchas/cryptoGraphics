@@ -11,23 +11,28 @@ import {
 } from "@mui/material";
 import { CryptoState } from "../CryptoContext";
 import AuthModal from "./Authentication/AuthModal";
+import UserSidebar from "./Authentication/UserSidebar";
+import { NavLink } from "react-router-dom";
 
 const darkTheme = createTheme({
   palette: {
     primary: {
-      main: "#fff",
+      main: "#F33F3F",
+      secondary: {
+        main: "#F33F3F",
+      },
     },
     type: "dark",
   },
 });
 
 const Header = () => {
-  const { currency, setCurrency } = CryptoState();
+  const { currency, setCurrency, user } = CryptoState();
 
   return (
     <>
       <ThemeProvider theme={darkTheme}>
-        <AppBar color="secondary" position="static">
+        <AppBar color="primary" position="static">
           <Container>
             <Toolbar>
               <Typography
@@ -40,7 +45,19 @@ const Header = () => {
                 }}
                 variant="h5"
               >
-                Crypto Graphics
+                <NavLink
+                  to="/"
+                  style={{
+                    flex: 1,
+                    color: "white",
+                    fontFamily: "Arial",
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                    textDecoration: "none",
+                  }}
+                >
+                  Crypto Charts
+                </NavLink>
               </Typography>
               <Select
                 variant="outlined"
@@ -57,7 +74,7 @@ const Header = () => {
                 <MenuItem value={"USD"}>USD</MenuItem>
                 <MenuItem value={"EUR"}>EUR</MenuItem>
               </Select>
-              <AuthModal />
+              {user ? <UserSidebar /> : <AuthModal />}
             </Toolbar>
           </Container>
         </AppBar>

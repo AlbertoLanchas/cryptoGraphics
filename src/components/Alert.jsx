@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { CryptoState } from "../CryptoContext";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -7,14 +7,19 @@ import MuiAlert from "@mui/material/Alert";
 import { alignProperty } from "@mui/material/styles/cssUtils";
 
 const Alert = () => {
-  const { alert, setAlert } = CryptoState;
+  const { alert, setAlert } = CryptoState();
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-
     setAlert({ open: false });
+    setOpen(false);
   };
 
   return (

@@ -21,7 +21,7 @@ const App = () => {
           <Route path="/coins/:id" element={<CoinPage />} exact />
         </Routes>
       </div>
-      {/* <Alert /> */}
+      <Alert />
     </BrowserRouter>
   );
 };

@@ -18,6 +18,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
+import { useNavigate, NavLink } from "react-router-dom";
 
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -30,6 +31,8 @@ const darkTheme = createTheme({
 });
 
 const CoinsTable = () => {
+  const navigate = useNavigate();
+
   const [search, setSearch] = useState([]);
   const [page, setPage] = useState(1);
 
@@ -61,10 +64,10 @@ const CoinsTable = () => {
         />
         <TableContainer>
           {loading ? (
-            <LinearProgress style={{ backgroundColor: "violet" }} />
+            <LinearProgress style={{ backgroundColor: "#F33F3F" }} />
           ) : (
             <Table aria-label="simple table">
-              <TableHead style={{ backgroundColor: "violet" }}>
+              <TableHead style={{ backgroundColor: "#F33F3F" }}>
                 <TableRow>
                   {["Coin", "Price", "24h Change", "Market Cap"].map((head) => (
                     <TableCell
@@ -88,7 +91,7 @@ const CoinsTable = () => {
                     const profit = row.price_change_percentage_24h > 0;
                     return (
                       <TableRow
-                        // onClick={() => history.push(`/coins/${row.id}`)}
+                        onClick={() => navigate(`/coins/${row.id}`)}
                         style={{
                           backgroundColor: "#16171a",
                           cursor: "pointer",
@@ -99,6 +102,7 @@ const CoinsTable = () => {
                         }}
                         key={row.name}
                       >
+                        {/* <NavLink to={`/coins/${coin.id}`}></NavLink> */}
                         <TableCell
                           component="th"
                           scope="row"
@@ -164,7 +168,7 @@ const CoinsTable = () => {
             width: "100%",
             display: "flex",
             justifyContent: "center",
-            color: "gold",
+            color: "#F33F3F",
           }}
           onChange={(_, value) => {
             setPage(value);

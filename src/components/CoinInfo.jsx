@@ -77,6 +77,7 @@ const CoinInfo = ({ coin }) => {
           //   paddingTop: 0,
           // },
         }}
+        className="container"
       >
         {!historicData | (flag === false) ? (
           <CircularProgress

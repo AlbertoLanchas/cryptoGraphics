@@ -53,7 +53,7 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
   .marketData {
     flex-direction: column;
     align-items: center;
@@ -62,13 +62,13 @@
   html {
     background-color: #14161a;
   }
-}
+} */
 
-@media screen and (max-width: 0px) {
+/* @media screen and (max-width: 0px) {
   .marketData {
     align-items: flex-start;
   }
   html {
     background-color: violet;
   }
-}
+} */

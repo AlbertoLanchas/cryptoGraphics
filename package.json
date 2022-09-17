@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "chart.js": "^3.9.1",
+    "cra-template-pwa": "^2.0.0",
     "firebase": "^9.9.3",
     "html-react-parser": "^3.0.4",
     "react": "^18.2.0",

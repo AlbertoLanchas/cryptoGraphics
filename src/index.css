@@ -12,3 +12,16 @@ code {
     monospace;
   color: rgb(59, 55, 55);
 }
+
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+  background: rgb(243, 63, 63);
+}
+
+html::-webkit-scrollbar-thumb {
+  box-shadow: 0px 0px 0px 100vh rgb(0, 0, 0);
+  border-radius: 20px;
+}
